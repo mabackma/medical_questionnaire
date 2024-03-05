@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:medical_questionnaire/Questions.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  // Run the application with the global state provider.
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => GlobalState()),
@@ -12,7 +14,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of the application.
   @override
@@ -23,11 +25,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Medical Questionnaire Home Page'),
     );
   }
 }
 
+// The home page of the application.
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
@@ -36,6 +39,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+// The state of the home page.
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -45,32 +49,13 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const Center(
-        child: Questions(),
-      ),
+      // Creates a key that is equal only to itself.
+      body: Questions(key: UniqueKey()),
       floatingActionButton: FloatingActionButton(
         onPressed: context.read<GlobalState>().getQuestions,
         tooltip: 'Hae lista',
         child: const Icon(Icons.add),
       ),
     );
-  }
-}
-
-class Questions extends StatelessWidget {
-  const Questions({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    // Lists all the questions in the global state.
-    final questions = context.watch<GlobalState>().questions.map((question) {
-      return Text(question);
-    }).toList();
-
-    return questions.isEmpty
-        ? const CircularProgressIndicator()
-        : ListView(children: questions);
   }
 }

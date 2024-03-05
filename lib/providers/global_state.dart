@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 
 class GlobalState extends ChangeNotifier {
-  List<String> questions = [];
+  List<Map<String, dynamic>> questions = [];
 
   Future<void> getQuestions() async {
-    await Future.delayed(const Duration(seconds: 1));
+    // Simulating an asynchronous operation with a delay
+    await Future.delayed(Duration(seconds: 1));
 
-    questions = ["eka itemi", "toka itemi"];
+    questions = [
+      {
+        "question": "first question",
+        "choices": ["a", "b", "c"]
+      },
+      {
+        "question": "second question",
+        "choices": ["1", "2", "3"]
+      },
+      {
+        "question": "third question",
+        "choices": ["first choice", "second choice", "third choice"]
+      },
+    ];
 
+    // This will trigger a rebuild of the widget.
     notifyListeners();
   }
 }
