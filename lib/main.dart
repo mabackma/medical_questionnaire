@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ShowQuestions(key: UniqueKey()),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: context.read<GlobalState>().getQuestions,
+        onPressed: context.read<GlobalState>().getQuestionnaire,
         tooltip: 'Hae lista',
         child: const Icon(Icons.add),
       ),
