@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medical_questionnaire/Questions.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
+import 'package:medical_questionnaire/show_questions.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -14,7 +14,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   // This widget is the root of the application.
   @override
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         // Creates a key that is equal only to itself.
-        child: Questions(key: UniqueKey()),
+        child: ShowQuestions(key: UniqueKey()),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: context.read<GlobalState>().getQuestions,
