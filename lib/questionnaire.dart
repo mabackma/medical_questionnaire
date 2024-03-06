@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 // Class for the multiple choice questions.
-class Questions extends StatelessWidget {
+class Questionnaire extends StatelessWidget {
   final String question;
   final List<String> choices;
 
   // Constructor with named parameters
-  const Questions({
+  const Questionnaire({
     required this.question,
     required this.choices,
     super.key,

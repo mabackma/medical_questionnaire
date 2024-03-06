@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-import '../questions.dart';
+import '../questionnaire.dart';
 
 class GlobalState extends ChangeNotifier {
-  List<Map<String, dynamic>> questions = [];
+  List<Map<String, dynamic>> questionnaire = [];
 
   Future<void> getQuestions() async {
 /*
@@ -26,7 +25,7 @@ class GlobalState extends ChangeNotifier {
       print('Error fetching questions: $error');
     }
 */
-    questions = [
+    questionnaire = [
       {
         "question": "first question",
         "choices": ["a", "b", "c"]
