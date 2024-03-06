@@ -49,8 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      // Creates a key that is equal only to itself.
-      body: Questions(key: UniqueKey()),
+      body: Center(
+        // Creates a key that is equal only to itself.
+        child: Questions(key: UniqueKey()),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: context.read<GlobalState>().getQuestions,
         tooltip: 'Hae lista',

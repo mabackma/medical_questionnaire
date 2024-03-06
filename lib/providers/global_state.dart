@@ -5,6 +5,8 @@ class GlobalState extends ChangeNotifier {
 
   Future<void> getQuestions() async {
     // Simulating an asynchronous operation with a delay
+    questions = [];
+    notifyListeners();
     await Future.delayed(Duration(seconds: 1));
 
     questions = [
