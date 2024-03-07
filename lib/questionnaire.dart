@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medical_questionnaire/providers/global_state.dart';
+import 'package:provider/provider.dart';
 
 // Class for the multiple choice questions.
 class Questionnaire extends StatelessWidget {
@@ -42,7 +44,7 @@ class Questionnaire extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () => handleTap(question, choice),
+              onTap: () => handleTap(question, choice, context),
             );
           }).toList(),
         )
@@ -51,13 +53,15 @@ class Questionnaire extends StatelessWidget {
   }
 
   // Method to save the question and the selected choice.
-  void handleTap(question, choice) {
+  void handleTap(String question, String choice, BuildContext context) {
     print("Tapped on choice $choice for question $question_id $question");
-
-    Map<String, dynamic> answer = {
-      "question_id": question_id,
-      "question": question,
-      "choice": choice,
+    final answer = {
+      'question_id': question_id,
+      'question': question,
+      'choice': choice,
     };
+
+    final globalState = Provider.of<GlobalState>(context, listen: false);
+    globalState.answers.add(answer);
   }
 }
