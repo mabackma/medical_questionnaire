@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiService {
-  // Method to fetch the entire questionnaire from the server
+  // Fetch all the questions from the server.
   static Future<List<Map<String, dynamic>>> getAll() async {
     try {
       final response =
@@ -14,6 +14,7 @@ class ApiService {
         // Convert the JSON response into a list of Questionnaire objects
         return jsonResponse.map((json) {
           return {
+            "question_id": json['_id'],
             "question": json['question'],
             "choices": List<String>.from(json['choices']),
           };

@@ -27,6 +27,7 @@ class ShowQuestions extends StatelessWidget {
                 ),
               ),
               Questionnaire(
+                question_id: q["question_id"] as String,
                 question: q["question"] as String,
                 choices: q["choices"] as List<String>,
               ) as Widget,

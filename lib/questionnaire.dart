@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 // Class for the multiple choice questions.
 class Questionnaire extends StatelessWidget {
+  final String question_id;
   final String question;
   final List<String> choices;
 
   // Constructor with named parameters
   const Questionnaire({
+    required this.question_id,
     required this.question,
     required this.choices,
     super.key,
@@ -38,6 +40,6 @@ class Questionnaire extends StatelessWidget {
 
   // Method to save the question and the selected choice.
   void handleTap(question, choice) {
-    print("Tapped on choice $choice for question $question");
+    print("Tapped on choice $choice for question $question_id $question");
   }
 }
