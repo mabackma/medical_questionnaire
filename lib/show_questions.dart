@@ -15,16 +15,11 @@ class ShowQuestions extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.only(bottom: 10),
           color: Colors.blue[100],
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Questionnaire(
-                question_id: q["question_id"] as String,
-                question: q["question"] as String,
-                choices: q["choices"] as List<String>,
-              ) as Widget,
-            ],
-          ),
+          child: Questionnaire(
+            question_id: q["question_id"] as String,
+            question: q["question"] as String,
+            choices: q["choices"] as List<String>,
+          ) as Widget,
         );
       },
     ).toList();
