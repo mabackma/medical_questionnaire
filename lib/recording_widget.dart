@@ -3,9 +3,7 @@ import 'package:medical_questionnaire/MyRecorder.dart';
 import 'package:http/http.dart' as http;
 
 class RecordingWidget extends StatefulWidget {
-  final String title;
-
-  const RecordingWidget({Key? key, required this.title}) : super(key: key);
+  const RecordingWidget({Key? key}) : super(key: key);
 
   @override
   _RecordingWidgetState createState() => _RecordingWidgetState();
@@ -54,44 +52,34 @@ class _RecordingWidgetState extends State<RecordingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _isRecording ? const Text('Recording') : const Text('Not recording'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _isRecording
-                ? const Text('Recording')
-                : const Text('Not recording'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                FloatingActionButton(
-                  onPressed: _toggleRecord,
-                  tooltip: _isRecording ? 'Stop recording' : 'Record speech',
-                  child: _isRecording
-                      ? const Icon(Icons.mic_off)
-                      : const Icon(Icons.mic),
-                ),
-                _isRecording || myRecorder.mostRecentSpeech.isEmpty
-                    ? FloatingActionButton(
-                        onPressed: () {},
-                        tooltip: 'Waiting for answer',
-                        child: const Icon(Icons.block),
-                      )
-                    : FloatingActionButton(
-                        onPressed: _sendMessage,
-                        tooltip: 'Send message',
-                        child: const Icon(Icons.arrow_forward_rounded),
-                      ),
-              ],
+            FloatingActionButton(
+              onPressed: _toggleRecord,
+              tooltip: _isRecording ? 'Stop recording' : 'Record speech',
+              child: _isRecording
+                  ? const Icon(Icons.mic_off)
+                  : const Icon(Icons.mic),
             ),
+            _isRecording || myRecorder.mostRecentSpeech.isEmpty
+                ? FloatingActionButton(
+                    onPressed: () {},
+                    tooltip: 'Waiting for answer',
+                    child: const Icon(Icons.block),
+                  )
+                : FloatingActionButton(
+                    onPressed: _sendMessage,
+                    tooltip: 'Send message',
+                    child: const Icon(Icons.arrow_forward_rounded),
+                  ),
           ],
         ),
-      ),
+      ],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
+import 'package:medical_questionnaire/recording_widget.dart';
 import 'package:provider/provider.dart';
 
 // Class for the multiple choice questions.
@@ -36,27 +37,50 @@ class _QuestionnaireState extends State<Questionnaire> {
           ),
         ),
         Column(
-          children: widget.choices.map((choice) {
-            return InkWell(
-              child: Container(
-                height: 30,
-                margin: const EdgeInsets.only(bottom: 20),
-                color: choice == selectedChoice
-                    ? Colors.deepPurple[400] // Change color for selected choice
-                    : Colors.deepPurple[200],
-                child: Padding(
-                  // Wrap Text widget with Padding
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    choice,
-                    textAlign: TextAlign.center, // Center align the text
+          children: widget.choices.isNotEmpty
+              ? widget.choices.map((choice) {
+                  return InkWell(
+                    child: Container(
+                      height: 30,
+                      margin: const EdgeInsets.only(bottom: 20),
+                      color: choice == selectedChoice
+                          ? Colors.deepPurple[
+                              400] // Change color for selected choice
+                          : Colors.deepPurple[200],
+                      child: Padding(
+                        // Wrap Text widget with Padding
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Text(
+                          choice,
+                          textAlign: TextAlign.center, // Center align the text
+                        ),
+                      ),
+                    ),
+                    onTap: () => handleTap(choice, context),
+                  );
+                }).toList()
+              // If there are no choices, display the recording widget
+              : [
+                  Column(
+                    children: [
+                      Container(
+                        height: 70,
+                        margin: const EdgeInsets.only(bottom: 20),
+                        child: const Text(
+                          "record your answer:",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            height: 3,
+                          ),
+                        ),
+                      ),
+                      const RecordingWidget(),
+                    ],
                   ),
-                ),
-              ),
-              onTap: () => handleTap(choice, context),
-            );
-          }).toList(),
-        )
+                ],
+        ),
       ],
     );
   }
