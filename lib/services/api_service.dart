@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -13,12 +11,18 @@ class ApiService {
       if (response.statusCode == 200) {
         List<dynamic> jsonResponse = jsonDecode(response.body);
 
-        // Convert the JSON response into a list of Questionnaire objects
+        // Convert the JSON response into a list of maps
         return jsonResponse.map((json) {
+          // Check if the 'choices' exists and is a list
+          List<String> choices =
+              (json['choices'] != null && json['choices'] is List)
+                  ? List<String>.from(json['choices'])
+                  : [];
+
           return {
             "question_id": json['_id'],
             "question": json['question'],
-            "choices": List<String>.from(json['choices']),
+            "choices": choices,
           };
         }).toList();
       } else {
