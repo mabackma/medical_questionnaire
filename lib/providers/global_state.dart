@@ -9,7 +9,6 @@ class GlobalState extends ChangeNotifier {
   Future<void> getQuestionnaire() async {
     try {
       questionnaire = await ApiService.getAll();
-      print('Fetched questions: $questionnaire');
     } catch (error) {
       print('Error fetching questions: $error');
     }

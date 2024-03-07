@@ -16,7 +16,7 @@ class ShowQuestions extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 10),
           color: Colors.blue[100],
           child: Questionnaire(
-            question_id: q["question_id"] as String,
+            questionId: q["question_id"] as String,
             question: q["question"] as String,
             choices: q["choices"] as List<String>,
           ) as Widget,

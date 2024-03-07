@@ -4,13 +4,13 @@ import 'package:provider/provider.dart';
 
 // Class for the multiple choice questions.
 class Questionnaire extends StatelessWidget {
-  final String question_id;
+  final String questionId;
   final String question;
   final List<String> choices;
 
   // Constructor with named parameters
   const Questionnaire({
-    required this.question_id,
+    required this.questionId,
     required this.question,
     required this.choices,
     super.key,
@@ -44,7 +44,7 @@ class Questionnaire extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () => handleTap(question, choice, context),
+              onTap: () => handleTap(choice, context),
             );
           }).toList(),
         )
@@ -53,15 +53,18 @@ class Questionnaire extends StatelessWidget {
   }
 
   // Method to save the question and the selected choice.
-  void handleTap(String question, String choice, BuildContext context) {
-    print("Tapped on choice $choice for question $question_id $question");
+  void handleTap(String choice, BuildContext context) {
     final answer = {
-      'question_id': question_id,
+      'question_id': questionId,
       'question': question,
       'choice': choice,
     };
 
     final globalState = Provider.of<GlobalState>(context, listen: false);
+
+    // Remove any existing answer for the same question
+    globalState.answers.removeWhere((ans) => ans['question_id'] == questionId);
+    // Add the new answer
     globalState.answers.add(answer);
   }
 }
