@@ -41,5 +41,11 @@ class Questionnaire extends StatelessWidget {
   // Method to save the question and the selected choice.
   void handleTap(question, choice) {
     print("Tapped on choice $choice for question $question_id $question");
+
+    Map<String, dynamic> answer = {
+      "question_id": question_id,
+      "question": question,
+      "choice": choice,
+    };
   }
 }
