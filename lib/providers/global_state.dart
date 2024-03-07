@@ -16,4 +16,12 @@ class GlobalState extends ChangeNotifier {
     // This will trigger a rebuild of the widget.
     notifyListeners();
   }
+
+  Future<void> sendAnswersToServer() async {
+    try {
+      await ApiService.postAnswers(answers);
+    } catch (error) {
+      print('Error sending answers: $error');
+    }
+  }
 }

@@ -53,10 +53,22 @@ class _MyHomePageState extends State<MyHomePage> {
         // Creates a key that is equal only to itself.
         child: ShowQuestions(key: UniqueKey()),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: context.read<GlobalState>().getQuestionnaire,
-        tooltip: 'Hae lista',
-        child: const Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () => context.read<GlobalState>().getQuestionnaire(),
+            tooltip: 'Hae lista',
+            child: const Icon(Icons.add),
+          ),
+          const SizedBox(height: 16), // Add spacing between buttons
+          FloatingActionButton(
+            onPressed: () => context.read<GlobalState>().sendAnswersToServer(),
+            tooltip: 'Lähetä vastaukset',
+            child: const Icon(Icons.send),
+          ),
+        ],
       ),
     );
   }

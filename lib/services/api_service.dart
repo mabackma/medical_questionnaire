@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -26,6 +28,27 @@ class ApiService {
     } catch (error) {
       // Handle any exceptions that occur during the HTTP request
       throw Exception('Error fetching questions: $error');
+    }
+  }
+
+  // Send all the answers to the server.
+  static Future<void> postAnswers(List<Map<String, dynamic>> answers) async {
+    try {
+      final response = await http.post(
+        Uri.parse('http://localhost:5001/answers'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(answers),
+      );
+
+      if (response.statusCode != 201) {
+        throw Exception('Failed to send answers: ${response.statusCode}');
+      } else {
+        print('Answers sent successfully');
+      }
+    } catch (error) {
+      throw Exception('Error sending answers: $error');
     }
   }
 }
