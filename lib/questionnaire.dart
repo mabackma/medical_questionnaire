@@ -3,7 +3,7 @@ import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:provider/provider.dart';
 
 // Class for the multiple choice questions.
-class Questionnaire extends StatelessWidget {
+class Questionnaire extends StatefulWidget {
   final String questionId;
   final String question;
   final List<String> choices;
@@ -17,11 +17,18 @@ class Questionnaire extends StatelessWidget {
   });
 
   @override
+  _QuestionnaireState createState() => _QuestionnaireState();
+}
+
+class _QuestionnaireState extends State<Questionnaire> {
+  String? selectedChoice;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          question,
+          widget.question,
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -29,12 +36,14 @@ class Questionnaire extends StatelessWidget {
           ),
         ),
         Column(
-          children: choices.map((choice) {
+          children: widget.choices.map((choice) {
             return InkWell(
               child: Container(
                 height: 30,
                 margin: const EdgeInsets.only(bottom: 20),
-                color: Colors.deepPurple[200],
+                color: choice == selectedChoice
+                    ? Colors.deepPurple[400] // Change color for selected choice
+                    : Colors.deepPurple[200],
                 child: Padding(
                   // Wrap Text widget with Padding
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -54,16 +63,20 @@ class Questionnaire extends StatelessWidget {
 
   // Method to save the question and the selected choice.
   void handleTap(String choice, BuildContext context) {
+    setState(() {
+      selectedChoice = choice; // Update selected choice
+    });
+
     final answer = {
-      'question_id': questionId,
-      'question': question,
+      'question_id': widget.questionId,
+      'question': widget.question,
       'choice': choice,
     };
 
     final globalState = Provider.of<GlobalState>(context, listen: false);
-
     // Remove any existing answer for the same question
-    globalState.answers.removeWhere((ans) => ans['question_id'] == questionId);
+    globalState.answers
+        .removeWhere((ans) => ans['question_id'] == widget.questionId);
     // Add the new answer
     globalState.answers.add(answer);
   }
