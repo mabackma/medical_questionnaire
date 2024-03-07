@@ -17,24 +17,36 @@ class Questionnaire extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: choices.map((choice) {
-        return InkWell(
-          child: Container(
-            height: 30,
-            margin: const EdgeInsets.only(bottom: 20),
-            color: Colors.deepPurple[200],
-            child: Padding(
-              // Wrap Text widget with Padding
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                choice,
-                textAlign: TextAlign.center, // Center align the text
-              ),
-            ),
+      children: [
+        Text(
+          question,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            height: 3,
           ),
-          onTap: () => handleTap(question, choice),
-        );
-      }).toList(),
+        ),
+        Column(
+          children: choices.map((choice) {
+            return InkWell(
+              child: Container(
+                height: 30,
+                margin: const EdgeInsets.only(bottom: 20),
+                color: Colors.deepPurple[200],
+                child: Padding(
+                  // Wrap Text widget with Padding
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    choice,
+                    textAlign: TextAlign.center, // Center align the text
+                  ),
+                ),
+              ),
+              onTap: () => handleTap(question, choice),
+            );
+          }).toList(),
+        )
+      ],
     );
   }
 

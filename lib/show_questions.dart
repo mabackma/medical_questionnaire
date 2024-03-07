@@ -18,14 +18,6 @@ class ShowQuestions extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                q["question"],
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  height: 3,
-                ),
-              ),
               Questionnaire(
                 question_id: q["question_id"] as String,
                 question: q["question"] as String,
