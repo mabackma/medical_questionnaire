@@ -43,14 +43,15 @@ class _RecordingWidgetState extends State<RecordingWidget> {
     try {
       final response = await request.send();
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         print('File uploaded successfully');
         final responseBody = await response.stream.bytesToString();
         final jsonResponse = json.decode(responseBody);
+
+        // Update the user's answer on the screen.
         setState(() {
           _userAnswer = jsonResponse['user_answer'];
         });
-        print(_userAnswer);
       } else {
         print('File upload failed with status ${response.statusCode}');
       }
