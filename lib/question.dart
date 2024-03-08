@@ -4,13 +4,13 @@ import 'package:medical_questionnaire/recording_widget.dart';
 import 'package:provider/provider.dart';
 
 // Class for the multiple choice questions.
-class Questionnaire extends StatefulWidget {
+class Question extends StatefulWidget {
   final String questionId;
   final String question;
   final List<String> choices;
 
   // Constructor with named parameters
-  const Questionnaire({
+  const Question({
     required this.questionId,
     required this.question,
     required this.choices,
@@ -18,10 +18,10 @@ class Questionnaire extends StatefulWidget {
   });
 
   @override
-  _QuestionnaireState createState() => _QuestionnaireState();
+  _QuestionState createState() => _QuestionState();
 }
 
-class _QuestionnaireState extends State<Questionnaire> {
+class _QuestionState extends State<Question> {
   String? selectedChoice;
 
   @override

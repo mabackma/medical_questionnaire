@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:provider/provider.dart';
-import 'Questionnaire.dart';
+import 'Question.dart';
 
 // The Questions widget displays a list of questions and their multiple choice answers.
 class ShowQuestions extends StatelessWidget {
@@ -15,7 +15,7 @@ class ShowQuestions extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.only(bottom: 10),
           color: Colors.blue[100],
-          child: Questionnaire(
+          child: Question(
             questionId: q["question_id"] as String,
             question: q["question"] as String,
             choices: q["choices"] as List<String>,
