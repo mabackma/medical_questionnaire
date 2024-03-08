@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:medical_questionnaire/user_answer_widget.dart';
 
 class RecordingWidget extends StatefulWidget {
-  const RecordingWidget({Key? key}) : super(key: key);
+  final String questionId;
+  const RecordingWidget({required this.questionId, Key? key}) : super(key: key);
 
   @override
   _RecordingWidgetState createState() => _RecordingWidgetState();
@@ -15,7 +16,14 @@ class _RecordingWidgetState extends State<RecordingWidget>
     with AutomaticKeepAliveClientMixin {
   bool _isRecording = false;
   final MyRecorder myRecorder = MyRecorder();
+  late String _questionId;
   String _userAnswer = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _questionId = widget.questionId; // Initialize _questionId
+  }
 
   // This mixin is used to keep the state of the widget alive
   // even when the user scrolls away from the widget.
@@ -96,7 +104,10 @@ class _RecordingWidgetState extends State<RecordingWidget>
                   ),
           ],
         ),
-        UserAnswerWidget(userAnswer: _userAnswer),
+        UserAnswerWidget(
+          questionId: _questionId,
+          userAnswer: _userAnswer,
+        ),
       ],
     );
   }

@@ -40,6 +40,7 @@ class _QuestionState extends State<Question> {
           children: widget.choices.isNotEmpty
               ? widget.choices.map((choice) {
                   return InkWell(
+                    onTap: () => handleTapChoice(choice, context),
                     child: Container(
                       height: 30,
                       margin: const EdgeInsets.only(bottom: 20),
@@ -56,7 +57,6 @@ class _QuestionState extends State<Question> {
                         ),
                       ),
                     ),
-                    onTap: () => handleTap(choice, context),
                   );
                 }).toList()
               // If there are no choices, display the recording widget
@@ -76,7 +76,10 @@ class _QuestionState extends State<Question> {
                           ),
                         ),
                       ),
-                      const RecordingWidget(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: RecordingWidget(questionId: widget.questionId),
+                      ),
                     ],
                   ),
                 ],
@@ -86,15 +89,14 @@ class _QuestionState extends State<Question> {
   }
 
   // Method to save the question and the selected choice.
-  void handleTap(String choice, BuildContext context) {
+  void handleTapChoice(String choice, BuildContext context) {
     setState(() {
       selectedChoice = choice; // Update selected choice
     });
 
     final answer = {
       'question_id': widget.questionId,
-      'question': widget.question,
-      'choice': choice,
+      'user_answer': choice,
     };
 
     final globalState = Provider.of<GlobalState>(context, listen: false);
@@ -115,7 +117,7 @@ class _QuestionState extends State<Question> {
       orElse: () => {}, // Return an empty Map if no saved answer is found
     );
     if (savedAnswer != null) {
-      selectedChoice = savedAnswer['choice'];
+      selectedChoice = savedAnswer['user_answer'];
     }
   }
 }
