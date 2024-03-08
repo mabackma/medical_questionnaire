@@ -11,10 +11,16 @@ class RecordingWidget extends StatefulWidget {
   _RecordingWidgetState createState() => _RecordingWidgetState();
 }
 
-class _RecordingWidgetState extends State<RecordingWidget> {
+class _RecordingWidgetState extends State<RecordingWidget>
+    with AutomaticKeepAliveClientMixin {
   bool _isRecording = false;
   final MyRecorder myRecorder = MyRecorder();
   String _userAnswer = "the user's answer will appear here";
+
+  // This mixin is used to keep the state of the widget alive
+  // even when the user scrolls away from the widget.
+  @override
+  bool get wantKeepAlive => true;
 
   void _toggleRecord() {
     setState(() {

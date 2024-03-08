@@ -104,4 +104,18 @@ class _QuestionnaireState extends State<Questionnaire> {
     // Add the new answer
     globalState.answers.add(answer);
   }
+
+  @override
+  void initState() {
+    super.initState();
+    // Retrieve the selected choice from the global state when the widget initializes
+    final globalState = Provider.of<GlobalState>(context, listen: false);
+    final savedAnswer = globalState.answers.firstWhere(
+      (ans) => ans['question_id'] == widget.questionId,
+      orElse: () => {}, // Return an empty Map if no saved answer is found
+    );
+    if (savedAnswer != null) {
+      selectedChoice = savedAnswer['choice'];
+    }
+  }
 }
