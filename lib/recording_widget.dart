@@ -15,7 +15,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
     with AutomaticKeepAliveClientMixin {
   bool _isRecording = false;
   final MyRecorder myRecorder = MyRecorder();
-  String _userAnswer = "the user's answer will appear here";
+  String _userAnswer = '';
 
   // This mixin is used to keep the state of the widget alive
   // even when the user scrolls away from the widget.
@@ -68,6 +68,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
