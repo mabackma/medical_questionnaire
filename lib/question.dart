@@ -88,7 +88,7 @@ class _QuestionState extends State<Question> {
     );
   }
 
-  // Method to save the question and the selected choice.
+  // Method to save the question id and the selected choice.
   void handleTapChoice(String choice, BuildContext context) {
     setState(() {
       selectedChoice = choice; // Update selected choice

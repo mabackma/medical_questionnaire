@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:medical_questionnaire/MyRecorder.dart';
 import 'package:http/http.dart' as http;
+import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:medical_questionnaire/user_answer_widget.dart';
+import 'package:provider/provider.dart';
 
 class RecordingWidget extends StatefulWidget {
   final String questionId;
@@ -65,6 +67,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
         // Update the user's answer on the screen.
         setState(() {
           _userAnswer = jsonResponse['user_answer'];
+          addUserAnswer(_questionId, _userAnswer, context);
         });
       } else {
         print('File upload failed with status ${response.statusCode}');
@@ -72,6 +75,21 @@ class _RecordingWidgetState extends State<RecordingWidget>
     } catch (error) {
       print('Error uploading file: $error');
     }
+  }
+
+  // Method to save the question id and the user answer.
+  void addUserAnswer(
+      String questionId, String userAnswer, BuildContext context) {
+    final answer = {
+      'question_id': questionId,
+      'user_answer': userAnswer,
+    };
+
+    final globalState = Provider.of<GlobalState>(context, listen: false);
+    // Remove any existing answer for the same question
+    globalState.answers.removeWhere((ans) => ans['question_id'] == questionId);
+    // Add the new answer
+    globalState.answers.add(answer);
   }
 
   @override

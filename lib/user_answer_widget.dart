@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medical_questionnaire/providers/global_state.dart';
-import 'package:provider/provider.dart';
 
 class UserAnswerWidget extends StatelessWidget {
   final String questionId;
@@ -27,35 +25,12 @@ class UserAnswerWidget extends StatelessWidget {
                   'The user answer will appear here.',
                   style: TextStyle(fontSize: 16.0),
                 )
-              : GestureDetector(
-                  onTap: () => handleTapAnswer(questionId, userAnswer, context),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        userAnswer,
-                        style: const TextStyle(fontSize: 16.0),
-                      ),
-                    ],
-                  ),
+              : Text(
+                  userAnswer,
+                  style: const TextStyle(fontSize: 16.0),
                 ),
         ],
       ),
     );
   }
-}
-
-// Method to save the question id and the user answer.
-void handleTapAnswer(
-    String questionId, String userAnswer, BuildContext context) {
-  final answer = {
-    'question_id': questionId,
-    'user_answer': userAnswer,
-  };
-
-  final globalState = Provider.of<GlobalState>(context, listen: false);
-  // Remove any existing answer for the same question
-  globalState.answers.removeWhere((ans) => ans['question_id'] == questionId);
-  // Add the new answer
-  globalState.answers.add(answer);
 }
