@@ -105,17 +105,12 @@ class _RecordingWidgetState extends State<RecordingWidget>
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         _isRecording ? const Text('Äänitys käynnissä') : const Text(''),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            FloatingActionButton(
-              onPressed: _toggleRecord,
-              tooltip: _isRecording ? 'Lopeta äänittäminen' : 'Äänitä puhetta',
-              child: _isRecording
-                  ? const Icon(Icons.mic_off)
-                  : const Icon(Icons.mic),
-            ),
-          ],
+        FloatingActionButton(
+          onPressed: _toggleRecord,
+          tooltip: _isRecording ? 'Lopeta äänittäminen' : 'Äänitä puhetta',
+          child: _isRecording || !_canRecord
+              ? const Icon(Icons.mic_off)
+              : const Icon(Icons.mic),
         ),
         UserAnswerWidget(
           questionId: _questionId,

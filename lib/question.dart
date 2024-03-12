@@ -64,8 +64,7 @@ class _QuestionState extends State<Question> {
                   Column(
                     children: [
                       Container(
-                        height: 70,
-                        margin: const EdgeInsets.only(bottom: 20),
+                        height: 40,
                         child: const Text(
                           "Äänitä vastauksesi painamalla mikrofoninappia:",
                           textAlign: TextAlign.center,
