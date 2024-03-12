@@ -67,7 +67,7 @@ class _QuestionState extends State<Question> {
                         height: 70,
                         margin: const EdgeInsets.only(bottom: 20),
                         child: const Text(
-                          "record your answer:",
+                          "Äänitä vastauksesi painamalla mikrofoninappia:",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 16,

@@ -14,7 +14,7 @@ class UserAnswerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'User answer:',
+            'Vastauksesi:',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18.0,
@@ -22,7 +22,7 @@ class UserAnswerWidget extends StatelessWidget {
           ),
           (userAnswer.isEmpty)
               ? const Text(
-                  'The user answer will appear here.',
+                  'Vastauksesi tulee tähän tekstimuodossa hetken kuluttua.',
                   style: TextStyle(fontSize: 16.0),
                 )
               : Text(

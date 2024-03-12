@@ -98,13 +98,13 @@ class _RecordingWidgetState extends State<RecordingWidget>
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _isRecording ? const Text('Recording') : const Text('Not recording'),
+        _isRecording ? const Text('Äänitys käynnissä') : const Text(''),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             FloatingActionButton(
               onPressed: _toggleRecord,
-              tooltip: _isRecording ? 'Stop recording' : 'Record speech',
+              tooltip: _isRecording ? 'Lopeta äänittäminen' : 'Äänitä puhetta',
               child: _isRecording
                   ? const Icon(Icons.mic_off)
                   : const Icon(Icons.mic),
@@ -112,12 +112,12 @@ class _RecordingWidgetState extends State<RecordingWidget>
             _isRecording || myRecorder.mostRecentSpeech.isEmpty
                 ? FloatingActionButton(
                     onPressed: () {},
-                    tooltip: 'Waiting for speech',
+                    tooltip: 'Odottaa äänitettä',
                     child: const Icon(Icons.block),
                   )
                 : FloatingActionButton(
                     onPressed: _sendMessage,
-                    tooltip: 'Send answer',
+                    tooltip: 'Lähetä vastaus',
                     child: const Icon(Icons.arrow_forward_rounded),
                   ),
           ],
