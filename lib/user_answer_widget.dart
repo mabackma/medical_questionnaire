@@ -22,7 +22,7 @@ class UserAnswerWidget extends StatelessWidget {
           ),
           (userAnswer.isEmpty)
               ? const Text(
-                  'Vastauksesi tulee tähän tekstimuodossa hetken kuluttua.',
+                  'Vastauksesi tekstimuodossa saapuu hetken kuluttua...',
                   style: TextStyle(fontSize: 16.0),
                 )
               : Text(

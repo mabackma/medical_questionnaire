@@ -41,6 +41,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
       myRecorder.recordAudio();
     } else {
       myRecorder.stopRecordingAudio();
+      _sendMessage();
     }
   }
 
@@ -109,17 +110,6 @@ class _RecordingWidgetState extends State<RecordingWidget>
                   ? const Icon(Icons.mic_off)
                   : const Icon(Icons.mic),
             ),
-            _isRecording || myRecorder.mostRecentSpeech.isEmpty
-                ? FloatingActionButton(
-                    onPressed: () {},
-                    tooltip: 'Odottaa äänitettä',
-                    child: const Icon(Icons.block),
-                  )
-                : FloatingActionButton(
-                    onPressed: _sendMessage,
-                    tooltip: 'Lähetä vastaus',
-                    child: const Icon(Icons.arrow_forward_rounded),
-                  ),
           ],
         ),
         UserAnswerWidget(
