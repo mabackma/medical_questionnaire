@@ -16,6 +16,7 @@ class RecordingWidget extends StatefulWidget {
 
 class _RecordingWidgetState extends State<RecordingWidget>
     with AutomaticKeepAliveClientMixin {
+  bool _canRecord = true;
   bool _isRecording = false;
   final MyRecorder myRecorder = MyRecorder();
   late String _questionId;
@@ -34,7 +35,9 @@ class _RecordingWidgetState extends State<RecordingWidget>
 
   void _toggleRecord() {
     setState(() {
-      _isRecording = !_isRecording;
+      if (_canRecord) {
+        _isRecording = !_isRecording;
+      }
     });
 
     if (_isRecording) {
@@ -46,6 +49,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
   }
 
   void _sendMessage() async {
+    _canRecord = false;
     await myRecorder.stopRecordingAudio();
     print(myRecorder.mostRecentSpeech);
     var uri = Uri.parse('http://127.0.0.1:5001/stt');
@@ -69,6 +73,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
         setState(() {
           _userAnswer = jsonResponse['user_answer'];
           addUserAnswer(_questionId, _userAnswer, context);
+          _canRecord = true;
         });
       } else {
         print('File upload failed with status ${response.statusCode}');
