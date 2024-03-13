@@ -111,7 +111,7 @@ class _QuestionState extends State<Question> {
       (ans) => ans['question_id'] == widget.questionId,
       orElse: () => {}, // Return an empty Map if no saved answer is found
     );
-    if (savedAnswer != null) {
+    if (savedAnswer.isNotEmpty) {
       selectedChoice = savedAnswer['user_answer'];
     }
   }
