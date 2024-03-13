@@ -64,7 +64,6 @@ class _QuestionState extends State<Question> {
                   Column(
                     children: [
                       Container(
-                        height: 40,
                         child: const Text(
                           "Äänitä vastauksesi painamalla mikrofoninappia:",
                           textAlign: TextAlign.center,
@@ -75,10 +74,7 @@ class _QuestionState extends State<Question> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: RecordingWidget(questionId: widget.questionId),
-                      ),
+                      RecordingWidget(questionId: widget.questionId),
                     ],
                   ),
                 ],

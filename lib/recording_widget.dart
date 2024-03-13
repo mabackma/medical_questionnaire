@@ -40,9 +40,9 @@ class _RecordingWidgetState extends State<RecordingWidget>
       }
     });
 
-    if (_isRecording) {
+    if (_isRecording && _canRecord) {
       myRecorder.recordAudio();
-    } else {
+    } else if (!_isRecording && _canRecord) {
       myRecorder.stopRecordingAudio();
       _sendMessage();
     }
@@ -104,13 +104,16 @@ class _RecordingWidgetState extends State<RecordingWidget>
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _isRecording ? const Text('Äänitys käynnissä') : const Text(''),
         FloatingActionButton(
           onPressed: _toggleRecord,
           tooltip: _isRecording ? 'Lopeta äänittäminen' : 'Äänitä puhetta',
-          child: _isRecording || !_canRecord
-              ? const Icon(Icons.mic_off)
-              : const Icon(Icons.mic),
+          child: _isRecording
+              ? const Icon(
+                  Icons.volume_up,
+                )
+              : (!_canRecord
+                  ? const Icon(Icons.mic_off)
+                  : const Icon(Icons.mic)),
         ),
         UserAnswerWidget(
           questionId: _questionId,
