@@ -49,7 +49,7 @@ class _QuestionState extends State<Question> {
                       color: choice == selectedChoice
                           ? theme.colorScheme
                               .primary // Change color for selected choice
-                          : const Color.fromARGB(170, 50, 120, 200),
+                          : const Color.fromARGB(170, 20, 80, 170),
                       child: Padding(
                         // Wrap Text widget with Padding
                         padding: const EdgeInsets.symmetric(horizontal: 20),
