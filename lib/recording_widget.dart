@@ -106,6 +106,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
       children: <Widget>[
         FloatingActionButton(
           onPressed: _toggleRecord,
+          backgroundColor: _isRecording ? Colors.red : Colors.blue,
           tooltip: _isRecording ? 'Lopeta äänittäminen' : 'Äänitä puhetta',
           child: _isRecording
               ? const Icon(
