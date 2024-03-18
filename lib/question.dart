@@ -26,6 +26,8 @@ class _QuestionState extends State<Question> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Column(
       children: [
         Text(
@@ -45,15 +47,18 @@ class _QuestionState extends State<Question> {
                       height: 30,
                       margin: const EdgeInsets.only(bottom: 20),
                       color: choice == selectedChoice
-                          ? Colors.deepPurple[
-                              400] // Change color for selected choice
-                          : Colors.deepPurple[200],
+                          ? theme.colorScheme
+                              .primary // Change color for selected choice
+                          : const Color.fromARGB(170, 50, 120, 200),
                       child: Padding(
                         // Wrap Text widget with Padding
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
                           choice,
                           textAlign: TextAlign.center, // Center align the text
+                          style:
+                              const TextStyle(color: Colors.white // Text color
+                                  ),
                         ),
                       ),
                     ),
