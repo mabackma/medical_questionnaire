@@ -104,18 +104,22 @@ class _RecordingWidgetState extends State<RecordingWidget>
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        FloatingActionButton(
-          onPressed: _toggleRecord,
-          backgroundColor:
-              _isRecording ? Colors.red : Color.fromARGB(170, 0, 0, 144),
-          tooltip: _isRecording ? 'Lopeta äänittäminen' : 'Äänitä puhetta',
-          child: _isRecording
-              ? const Icon(
-                  Icons.volume_up,
-                )
-              : (!_canRecord
-                  ? const Icon(Icons.mic_off)
-                  : const Icon(Icons.mic)),
+        SizedBox(
+          height: 60,
+          width: 60,
+          child: FloatingActionButton(
+            onPressed: _toggleRecord,
+            backgroundColor:
+                _isRecording ? Colors.red : Color.fromARGB(170, 0, 0, 144),
+            tooltip: _isRecording ? 'Lopeta äänittäminen' : 'Äänitä puhetta',
+            child: _isRecording
+                ? const Icon(
+                    Icons.volume_up,
+                  )
+                : (!_canRecord
+                    ? const Icon(Icons.mic_off)
+                    : const Icon(Icons.mic)),
+          ),
         ),
         UserAnswerWidget(
           questionId: _questionId,

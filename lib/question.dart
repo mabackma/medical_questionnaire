@@ -44,21 +44,31 @@ class _QuestionState extends State<Question> {
                   return InkWell(
                     onTap: () => handleTapChoice(choice, context),
                     child: Container(
-                      height: 30,
+                      height: 40,
                       margin: const EdgeInsets.only(bottom: 20),
-                      color: choice == selectedChoice
-                          ? theme.colorScheme
-                              .primary // Change color for selected choice
-                          : const Color.fromARGB(170, 20, 80, 170),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: choice == selectedChoice
+                              ? Colors.white // Border color for selected choice
+                              : Colors
+                                  .transparent, // No border for unselected choices
+                          width: 5, // Border width
+                        ),
+                        color: choice == selectedChoice
+                            ? theme.colorScheme
+                                .primary // Change color for selected choice
+                            : const Color.fromARGB(255, 26, 94, 129),
+                        borderRadius: BorderRadius.circular(5), // Border radius
+                      ),
                       child: Padding(
                         // Wrap Text widget with Padding
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: Text(
                           choice,
                           textAlign: TextAlign.center, // Center align the text
-                          style:
-                              const TextStyle(color: Colors.white // Text color
-                                  ),
+                          style: const TextStyle(
+                            color: Colors.white, fontSize: 16, // Text color
+                          ),
                         ),
                       ),
                     ),
