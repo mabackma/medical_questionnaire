@@ -10,11 +10,11 @@ class InputPage extends StatelessWidget {
     TextEditingController _textEditingController = TextEditingController();
 
     void handleButtonPress(BuildContext context) {
-      // Add the text input to the global state
+      // Add the user name to the global state
       final globalState = Provider.of<GlobalState>(context, listen: false);
       globalState.user = _textEditingController.text;
 
-      // Navigate to the home page and pass the text input
+      // Navigate to the home page
       Navigator.pushReplacementNamed(context, '/home');
     }
 
