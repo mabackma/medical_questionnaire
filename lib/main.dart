@@ -24,10 +24,12 @@ class MyApp extends StatelessWidget {
       title: 'Medical Questionnaire',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.deepPurple,
-            backgroundColor: Colors.deepPurple[200]),
+          primarySwatch: Colors.deepPurple,
+          backgroundColor: const Color.fromARGB(255, 26, 94, 129),
+        ),
         useMaterial3: true,
       ),
+      //home: const MyHomePage(title: 'Medical Questionnaire Home Page'),
       // Route to either the input page or the home page based on app state
       initialRoute: '/',
       routes: {
