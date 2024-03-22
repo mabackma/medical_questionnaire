@@ -36,7 +36,7 @@ class ApiService {
   }
 
   // Send all the answers to the server.
-  static Future<void> postAnswers(List<Map<String, dynamic>> answers) async {
+  static Future<void> postAnswers(Map<String, dynamic> answers) async {
     try {
       print(answers);
       final response = await http.post(

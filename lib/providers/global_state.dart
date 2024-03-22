@@ -25,9 +25,7 @@ class GlobalState extends ChangeNotifier {
   Future<void> sendAnswersToServer() async {
     print('Sending answers to server from user: $user');
     try {
-      await ApiService.postAnswers([
-        {'user': user, 'answers': answers}
-      ]);
+      await ApiService.postAnswers({'user': user, 'answers': answers});
       await deleteFilesInDirectory();
     } catch (error) {
       print('Error sending answers: $error');
