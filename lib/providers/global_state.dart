@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
 class GlobalState extends ChangeNotifier {
+  String user = '';
   List<Map<String, dynamic>> questionnaire = [];
   List<Map<String, dynamic>> answers = [];
 
@@ -20,7 +21,9 @@ class GlobalState extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Method to send the answers to the server
   Future<void> sendAnswersToServer() async {
+    print('Sending answers to server from user: $user');
     try {
       await ApiService.postAnswers(answers);
       await deleteFilesInDirectory();

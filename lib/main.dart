@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical_questionnaire/InputPage.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:medical_questionnaire/show_questions.dart';
 import 'package:provider/provider.dart';
@@ -20,14 +21,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Medical Questionnaire',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
             primarySwatch: Colors.deepPurple,
             backgroundColor: Colors.deepPurple[200]),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Medical Questionnaire Home Page'),
+      // Route to either the input page or the home page based on app state
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const InputPage(),
+        '/home': (context) =>
+            const MyHomePage(title: 'Medical Questionnaire Home Page'),
+      },
     );
   }
 }
@@ -44,33 +51,26 @@ class MyHomePage extends StatefulWidget {
 // The state of the home page.
 class _MyHomePageState extends State<MyHomePage> {
   @override
+  void initState() {
+    super.initState();
+    context.read<GlobalState>().getQuestionnaire();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called.
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        // Creates a key that is equal only to itself.
-        child: ShowQuestions(key: UniqueKey()),
+      body: const Center(
+        child: ShowQuestions(),
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () => context.read<GlobalState>().getQuestionnaire(),
-            tooltip: 'Hae lista',
-            child: const Icon(Icons.add),
-          ),
-          const SizedBox(height: 16), // Add spacing between buttons
-          FloatingActionButton(
-            onPressed: () => context.read<GlobalState>().sendAnswersToServer(),
-            tooltip: 'Lähetä vastaukset',
-            child: const Icon(Icons.send),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.read<GlobalState>().sendAnswersToServer();
+        },
+        tooltip: 'Lähetä vastaukset',
+        child: const Icon(Icons.send),
       ),
     );
   }
