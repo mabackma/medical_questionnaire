@@ -6,7 +6,8 @@ class ApiService {
   static Future<List<Map<String, dynamic>>> getAll() async {
     try {
       final response =
-          await http.get(Uri.parse('http://localhost:5001/questionnaire'));
+          //await http.get(Uri.parse('http://localhost:5001/questionnaire'));
+          await http.get(Uri.parse('http://127.0.0.1:5001/questionnaire'));
 
       if (response.statusCode == 200) {
         List<dynamic> jsonResponse = jsonDecode(response.body);
@@ -39,6 +40,7 @@ class ApiService {
   static Future<void> postAnswers(Map<String, dynamic> answers) async {
     try {
       final response = await http.post(
+        //Uri.parse('http://localhost:5001/answers'),
         Uri.parse('http://localhost:5001/answers'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
