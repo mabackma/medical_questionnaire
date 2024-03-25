@@ -31,7 +31,7 @@ class InputPage extends StatelessWidget {
               controller: _textEditingController,
               textAlign: TextAlign.center,
               decoration: const InputDecoration(
-                hintText: 'Enter your text here',
+                hintText: 'Enter your username here',
                 hintStyle: TextStyle(color: Colors.white),
               ),
               style: const TextStyle(color: Colors.white),
