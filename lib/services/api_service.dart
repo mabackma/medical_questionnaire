@@ -80,4 +80,38 @@ class ApiService {
       throw Exception('Error sending answers for summary: $error');
     }
   }
+
+  // Fetch the summaries from the server.
+  static Future<List<Map<String, dynamic>>> getSummaries(user) async {
+    try {
+      final response = await http.post(
+        //Uri.parse('http://localhost:5001/get_summary'),
+        Uri.parse('http://localhost:5002/get_summary'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({'user': user}),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+
+        List<dynamic> jsonSummaries = jsonResponse['summaries'];
+
+        // Convert the JSON response into a list of maps
+        List<Map<String, dynamic>> summaries = jsonSummaries.map((json) {
+          return {
+            "summary": json['summary'],
+          };
+        }).toList();
+
+        print('Summaries fetched successfully');
+        return summaries;
+      } else {
+        throw Exception('Failed to load summaries: ${response.statusCode}');
+      }
+    } catch (error) {
+      throw Exception('Error fetching summaries: $error');
+    }
+  }
 }

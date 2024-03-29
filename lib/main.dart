@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical_questionnaire/InputPage.dart';
+import 'package:medical_questionnaire/SummaryPage.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:medical_questionnaire/show_questions.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const InputPage(),
         '/home': (context) =>
-            const MyHomePage(title: 'Medical Questionnaire Home Page'),
+            const MyHomePage(title: 'Hyvinvointikyselylomake'),
+        '/summary': (context) => const SummaryPage(title: 'Kyselyn yhteenveto'),
       },
     );
   }
@@ -69,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.read<GlobalState>().sendAnswersToServer();
+          context.read<GlobalState>().sendAnswersToServer(context);
         },
         tooltip: 'Lähetä vastaukset',
         child: const Icon(Icons.send),

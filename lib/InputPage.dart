@@ -31,7 +31,7 @@ class InputPage extends StatelessWidget {
               controller: _textEditingController,
               textAlign: TextAlign.center,
               decoration: const InputDecoration(
-                hintText: 'Enter your username here',
+                hintText: 'Anna käyttäjänimesi',
                 hintStyle: TextStyle(color: Colors.white),
               ),
               style: const TextStyle(color: Colors.white),
@@ -39,7 +39,7 @@ class InputPage extends StatelessWidget {
             const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () => handleButtonPress(context),
-              child: const Text('Submit'),
+              child: const Text('Lähetä'),
             ),
           ],
         ),

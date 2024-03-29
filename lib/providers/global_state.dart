@@ -8,6 +8,7 @@ class GlobalState extends ChangeNotifier {
   String user = '';
   List<Map<String, dynamic>> questionnaire = [];
   List<Map<String, dynamic>> answers = [];
+  List<Map<String, dynamic>> summaries = [];
 
   // Method to fetch the entire questionnaire from the server
   Future<void> getQuestionnaire() async {
@@ -22,7 +23,7 @@ class GlobalState extends ChangeNotifier {
   }
 
   // Method to send the answers to the server
-  Future<void> sendAnswersToServer() async {
+  Future<void> sendAnswersToServer(BuildContext context) async {
     print('Sending answers to server from user: $user');
     try {
       await ApiService.postAnswers(
@@ -32,8 +33,19 @@ class GlobalState extends ChangeNotifier {
         {'user': user, 'answers': answers},
       );
       await deleteFilesInDirectory();
+      await getSummaries();
+      Navigator.pushReplacementNamed(context, '/summary');
     } catch (error) {
       print('Error sending answers: $error');
+    }
+  }
+
+  // Method to fetch the user's summaries from the server
+  Future<void> getSummaries() async {
+    try {
+      summaries = await ApiService.getSummaries(user);
+    } catch (error) {
+      print('Error fetching summaries: $error');
     }
   }
 
