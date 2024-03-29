@@ -57,4 +57,27 @@ class ApiService {
       throw Exception('Error sending answers: $error');
     }
   }
+
+  // Send questions and answers to the server to generate a summary.
+  static Future<void> postAnswersForSummary(
+      Map<String, dynamic> answers) async {
+    try {
+      final response = await http.post(
+        //Uri.parse('http://localhost:5001/answers'),
+        Uri.parse('http://localhost:5002/make_summary'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(answers),
+      );
+
+      if (response.statusCode != 201) {
+        throw Exception('Failed to send answers: ${response.statusCode}');
+      } else {
+        print('Answers for summary sent successfully');
+      }
+    } catch (error) {
+      throw Exception('Error sending answers for summary: $error');
+    }
+  }
 }

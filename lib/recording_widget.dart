@@ -8,7 +8,10 @@ import 'package:provider/provider.dart';
 
 class RecordingWidget extends StatefulWidget {
   final String questionId;
-  const RecordingWidget({required this.questionId, Key? key}) : super(key: key);
+  final String question;
+  const RecordingWidget(
+      {required this.questionId, required this.question, Key? key})
+      : super(key: key);
 
   @override
   _RecordingWidgetState createState() => _RecordingWidgetState();
@@ -20,12 +23,14 @@ class _RecordingWidgetState extends State<RecordingWidget>
   bool _isRecording = false;
   final MyRecorder myRecorder = MyRecorder();
   late String _questionId;
+  late String _question;
   String _userAnswer = '';
 
   @override
   void initState() {
     super.initState();
-    _questionId = widget.questionId; // Initialize _questionId
+    _questionId = widget.questionId;
+    _question = widget.question; // Initialize _questionId
   }
 
   // This mixin is used to keep the state of the widget alive
@@ -73,7 +78,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
         // Update the user's answer on the screen.
         setState(() {
           _userAnswer = jsonResponse['user_answer'];
-          addUserAnswer(_questionId, _userAnswer, context);
+          addUserAnswer(_questionId, _question, _userAnswer, context);
           _canRecord = true;
         });
       } else {
@@ -85,10 +90,11 @@ class _RecordingWidgetState extends State<RecordingWidget>
   }
 
   // Method to save the question id and the user answer.
-  void addUserAnswer(
-      String questionId, String userAnswer, BuildContext context) {
+  void addUserAnswer(String questionId, String question, String userAnswer,
+      BuildContext context) {
     final answer = {
       'question_id': questionId,
+      'question': _question,
       'user_answer': userAnswer,
     };
 

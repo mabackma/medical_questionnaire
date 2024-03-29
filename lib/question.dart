@@ -89,7 +89,10 @@ class _QuestionState extends State<Question> {
                           ),
                         ),
                       ),
-                      RecordingWidget(questionId: widget.questionId),
+                      RecordingWidget(
+                        questionId: widget.questionId,
+                        question: widget.question,
+                      ),
                     ],
                   ),
                 ],
@@ -106,6 +109,7 @@ class _QuestionState extends State<Question> {
 
     final answer = {
       'question_id': widget.questionId,
+      'question': widget.question,
       'user_answer': choice,
     };
 
