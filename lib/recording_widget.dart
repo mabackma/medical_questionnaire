@@ -95,7 +95,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
     final answer = {
       'question_id': questionId,
       'question': _question,
-      'user_answer': userAnswer,
+      'user_answer': "sanoo: $userAnswer",
     };
 
     final globalState = Provider.of<GlobalState>(context, listen: false);
