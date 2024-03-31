@@ -22,7 +22,7 @@ class Question extends StatefulWidget {
 }
 
 class _QuestionState extends State<Question> {
-  Map<String, dynamic>? selectedChoice;
+  String? selectedChoiceKey;
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +51,13 @@ class _QuestionState extends State<Question> {
                       margin: const EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: choiceKey == selectedChoice
+                          color: choiceKey == selectedChoiceKey
                               ? Colors.white // Border color for selected choice
                               : Colors
                                   .transparent, // No border for unselected choices
                           width: 5, // Border width
                         ),
-                        color: choice == selectedChoice
+                        color: choiceKey == selectedChoiceKey
                             ? theme.colorScheme
                                 .primary // Change color for selected choice
                             : const Color.fromARGB(255, 26, 94, 129),
@@ -105,7 +105,7 @@ class _QuestionState extends State<Question> {
   // Method to save the question id and the selected choice.
   void handleTapChoice(Map<String, dynamic> choice, BuildContext context) {
     setState(() {
-      selectedChoice = choice; // Update selected choice
+      selectedChoiceKey = choice.keys.first; // Update selected choice
     });
 
     final answer = {
@@ -132,7 +132,7 @@ class _QuestionState extends State<Question> {
       orElse: () => {}, // Return an empty Map if no saved answer is found
     );
     if (savedAnswer.isNotEmpty) {
-      selectedChoice = savedAnswer['user_answer'];
+      selectedChoiceKey = savedAnswer['user_answer'];
     }
   }
 }
