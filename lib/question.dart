@@ -3,7 +3,7 @@ import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:medical_questionnaire/recording_widget.dart';
 import 'package:provider/provider.dart';
 
-// Class for the multiple choice questions.
+// Class for the multiple choice questions
 class Question extends StatefulWidget {
   final String questionId;
   final String question;
