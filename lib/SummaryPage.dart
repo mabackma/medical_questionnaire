@@ -5,7 +5,7 @@ import 'package:medical_questionnaire/show_summaries.dart';
 import 'package:provider/provider.dart';
 
 class SummaryPage extends StatefulWidget {
-  const SummaryPage({Key? key, required this.title}) : super(key: key);
+  const SummaryPage({super.key, required this.title});
 
   final String title;
 
@@ -32,13 +32,16 @@ class _SummaryPageState extends State<SummaryPage> {
       ),
       body: Column(
         children: [
-          Expanded(
+          const Expanded(
             child: ShowSummaries(),
           ),
           const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: exitApplication,
-            child: const Text('Sulje sovellus'),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: ElevatedButton(
+              onPressed: exitApplication,
+              child: const Text('Sulje sovellus'),
+            ),
           ),
         ],
       ),

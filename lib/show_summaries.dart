@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 // Displays a list of summaries of the questionnaire.
 class ShowSummaries extends StatelessWidget {
-  ShowSummaries({super.key});
+  const ShowSummaries({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ShowSummaries extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 summary,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ),
           ),

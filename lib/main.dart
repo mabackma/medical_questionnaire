@@ -30,8 +30,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      //home: const MyHomePage(title: 'Medical Questionnaire Home Page'),
-      // Route to either the input page or the home page based on app state
+      // Routes for the application
       initialRoute: '/',
       routes: {
         '/': (context) => const InputPage(),
