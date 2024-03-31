@@ -15,9 +15,9 @@ class ApiService {
         // Convert the JSON response into a list of maps
         return jsonResponse.map((json) {
           // Check if the 'choices' exists and is a list
-          List<String> choices =
+          List<Map<String, dynamic>> choices =
               (json['choices'] != null && json['choices'] is List)
-                  ? List<String>.from(json['choices'])
+                  ? List<Map<String, dynamic>>.from(json['choices'])
                   : [];
 
           return {

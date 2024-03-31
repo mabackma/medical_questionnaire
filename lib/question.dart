@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class Question extends StatefulWidget {
   final String questionId;
   final String question;
-  final List<String> choices;
+  final List<Map<String, dynamic>> choices;
 
   // Constructor with named parameters
   const Question({
@@ -22,7 +22,7 @@ class Question extends StatefulWidget {
 }
 
 class _QuestionState extends State<Question> {
-  String? selectedChoice;
+  Map<String, dynamic>? selectedChoice;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +41,9 @@ class _QuestionState extends State<Question> {
         Column(
           children: widget.choices.isNotEmpty
               ? widget.choices.map((choice) {
+                  // Extracting the key from each choice map
+                  String choiceKey = choice.keys.first;
+
                   return InkWell(
                     onTap: () => handleTapChoice(choice, context),
                     child: Container(
@@ -48,7 +51,7 @@ class _QuestionState extends State<Question> {
                       margin: const EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: choice == selectedChoice
+                          color: choiceKey == selectedChoice
                               ? Colors.white // Border color for selected choice
                               : Colors
                                   .transparent, // No border for unselected choices
@@ -64,7 +67,7 @@ class _QuestionState extends State<Question> {
                         // Wrap Text widget with Padding
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: Text(
-                          choice,
+                          choiceKey, // Display the choice key
                           textAlign: TextAlign.center, // Center align the text
                           style: const TextStyle(
                             color: Colors.white, fontSize: 16, // Text color
@@ -78,15 +81,13 @@ class _QuestionState extends State<Question> {
               : [
                   Column(
                     children: [
-                      Container(
-                        child: const Text(
-                          "Äänitä vastauksesi painamalla mikrofoninappia:",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            height: 3,
-                          ),
+                      const Text(
+                        "Äänitä vastauksesi painamalla mikrofoninappia:",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          height: 3,
                         ),
                       ),
                       RecordingWidget(
@@ -102,7 +103,7 @@ class _QuestionState extends State<Question> {
   }
 
   // Method to save the question id and the selected choice.
-  void handleTapChoice(String choice, BuildContext context) {
+  void handleTapChoice(Map<String, dynamic> choice, BuildContext context) {
     setState(() {
       selectedChoice = choice; // Update selected choice
     });
@@ -110,7 +111,7 @@ class _QuestionState extends State<Question> {
     final answer = {
       'question_id': widget.questionId,
       'question': widget.question,
-      'user_answer': choice,
+      'user_answer': choice.values.first,
     };
 
     final globalState = Provider.of<GlobalState>(context, listen: false);

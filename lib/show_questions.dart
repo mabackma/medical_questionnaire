@@ -18,7 +18,7 @@ class ShowQuestions extends StatelessWidget {
           child: Question(
             questionId: q["question_id"] as String,
             question: q["question"] as String,
-            choices: q["choices"] as List<String>,
+            choices: q["choices"] as List<Map<String, dynamic>>,
           ) as Widget,
         );
       },
