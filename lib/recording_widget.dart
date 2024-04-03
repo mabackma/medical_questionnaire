@@ -57,7 +57,6 @@ class _RecordingWidgetState extends State<RecordingWidget>
     _canRecord = false;
     await myRecorder.stopRecordingAudio();
     print(myRecorder.mostRecentSpeech);
-    //var uri = Uri.parse('http://127.0.0.1:5001/stt');
     var uri = Uri.parse('http://127.0.0.1:5001/stt');
 
     // multipart request

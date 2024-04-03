@@ -6,7 +6,6 @@ class ApiService {
   static Future<List<Map<String, dynamic>>> getAll() async {
     try {
       final response =
-          //await http.get(Uri.parse('http://localhost:5001/questionnaire'));
           await http.get(Uri.parse('http://127.0.0.1:5001/questionnaire'));
 
       if (response.statusCode == 200) {
@@ -40,7 +39,6 @@ class ApiService {
   static Future<void> postAnswers(Map<String, dynamic> answers) async {
     try {
       final response = await http.post(
-        //Uri.parse('http://localhost:5001/answers'),
         Uri.parse('http://localhost:5001/answers'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -63,8 +61,7 @@ class ApiService {
       Map<String, dynamic> answers) async {
     try {
       final response = await http.post(
-        //Uri.parse('http://localhost:5001/answers'),
-        Uri.parse('http://localhost:5002/make_summary'),
+        Uri.parse('http://localhost:5001/make_summary'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -85,8 +82,7 @@ class ApiService {
   static Future<List<Map<String, dynamic>>> getSummaries(user) async {
     try {
       final response = await http.post(
-        //Uri.parse('http://localhost:5001/get_summary'),
-        Uri.parse('http://localhost:5002/get_summary'),
+        Uri.parse('http://localhost:5001/get_summary'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
