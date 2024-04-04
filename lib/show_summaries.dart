@@ -8,26 +8,39 @@ class ShowSummaries extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get the list of summaries from the global state
-    final summaries = context.watch<GlobalState>().summaries;
+    return Consumer<GlobalState>(
+      builder: (context, globalState, child) {
+        // Get the list of summaries from the global state
+        final summaries = globalState.summaries;
 
-    return ListView.builder(
-      itemCount: summaries.length,
-      itemBuilder: (context, index) {
-        final summary = summaries[index]['summary'] as String;
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Card(
-            elevation: 3,
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                summary,
-                style: const TextStyle(fontSize: 16),
-              ),
+        if (summaries.isEmpty) {
+          // Show a spinner if summaries are empty
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
             ),
-          ),
+          );
+        }
+
+        return ListView.builder(
+          itemCount: summaries.length,
+          itemBuilder: (context, index) {
+            final summary = summaries[index]['summary'] as String;
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Card(
+                elevation: 3,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    summary,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            );
+          },
         );
       },
     );

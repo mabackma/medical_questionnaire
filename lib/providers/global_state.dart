@@ -33,8 +33,6 @@ class GlobalState extends ChangeNotifier {
         {'user': user, 'answers': answers},
       );
       await deleteFilesInDirectory();
-      await getSummaries();
-      Navigator.pushReplacementNamed(context, '/summary');
     } catch (error) {
       print('Error sending answers: $error');
     }
@@ -44,6 +42,8 @@ class GlobalState extends ChangeNotifier {
   Future<void> getSummaries() async {
     try {
       summaries = await ApiService.getSummaries(user);
+      // Notify listeners to trigger UI update
+      notifyListeners();
     } catch (error) {
       print('Error fetching summaries: $error');
     }

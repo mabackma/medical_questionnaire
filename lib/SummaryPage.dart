@@ -17,11 +17,22 @@ class _SummaryPageState extends State<SummaryPage> {
   @override
   void initState() {
     super.initState();
-    context.read<GlobalState>().getSummaries();
+    handleAnswers();
+  }
+
+  void handleAnswers() async {
+    await context.read<GlobalState>().sendAnswersToServer(context);
+    await context.read<GlobalState>().getSummaries();
   }
 
   void exitApplication() {
     exit(0);
+  }
+
+  void moveToQuestionnaire() {
+    context.read<GlobalState>().answers.clear();
+    context.read<GlobalState>().summaries.clear();
+    Navigator.pushReplacementNamed(context, '/home');
   }
 
   @override
@@ -36,6 +47,13 @@ class _SummaryPageState extends State<SummaryPage> {
             child: ShowSummaries(),
           ),
           const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: ElevatedButton(
+              onPressed: moveToQuestionnaire,
+              child: const Text('Tee kysely uudelleen'),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: ElevatedButton(

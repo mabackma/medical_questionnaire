@@ -25,7 +25,9 @@ class ShowQuestions extends StatelessWidget {
     ).toList();
 
     return questionnaire.isEmpty
-        ? const CircularProgressIndicator()
+        ? const CircularProgressIndicator(
+            color: Colors.white,
+          )
         : ListView(
             padding: const EdgeInsets.all(18),
             children: questionnaire,
