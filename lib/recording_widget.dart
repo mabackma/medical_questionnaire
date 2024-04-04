@@ -128,10 +128,26 @@ class _RecordingWidgetState extends State<RecordingWidget>
                     : const Icon(Icons.mic)),
           ),
         ),
-        UserAnswerWidget(
-          questionId: _questionId,
-          userAnswer: _userAnswer,
+        const SizedBox(height: 8.0),
+        const Text(
+          'Vastauksesi:',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18.0,
+          ),
         ),
+        _canRecord
+            ? UserAnswerWidget(
+                questionId: _questionId,
+                userAnswer: _userAnswer,
+              )
+            : Container(
+                margin: const EdgeInsets.only(
+                    bottom: 8.0), // Add margin only at the bottom
+                child: const CircularProgressIndicator(
+                  color: Colors.white,
+                ),
+              ),
       ],
     );
   }

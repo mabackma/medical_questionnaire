@@ -70,7 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, '/summary');
+          if (context.read<GlobalState>().answers.isNotEmpty) {
+            Navigator.pushReplacementNamed(context, '/summary');
+          }
         },
         tooltip: 'Lähetä vastaukset',
         child: const Icon(Icons.send),
