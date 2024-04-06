@@ -25,6 +25,12 @@ class _QuestionState extends State<Question> {
   String? selectedChoiceKey;
 
   @override
+  void initState() {
+    super.initState();
+    selectedChoiceKey = _getSavedAnswer();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
@@ -122,17 +128,14 @@ class _QuestionState extends State<Question> {
     globalState.answers.add(answer);
   }
 
-  @override
-  void initState() {
-    super.initState();
+  String? _getSavedAnswer() {
     // Retrieve the selected choice from the global state when the widget initializes
     final globalState = Provider.of<GlobalState>(context, listen: false);
     final savedAnswer = globalState.answers.firstWhere(
       (ans) => ans['question_id'] == widget.questionId,
       orElse: () => {}, // Return an empty Map if no saved answer is found
     );
-    if (savedAnswer.isNotEmpty) {
-      selectedChoiceKey = savedAnswer['user_answer'];
-    }
+
+    return savedAnswer.isNotEmpty ? savedAnswer['user_answer'] : null;
   }
 }
