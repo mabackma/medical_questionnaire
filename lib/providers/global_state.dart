@@ -5,7 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
 class GlobalState extends ChangeNotifier {
-  String user = '';
+  Map<String, Object> user = {'username': '', 'age': 0, 'gender': ''};
   List<Map<String, dynamic>> questionnaire = [];
   List<Map<String, dynamic>> answers = [];
   List<Map<String, dynamic>> summaries = [];

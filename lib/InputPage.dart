@@ -7,12 +7,18 @@ class InputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _textEditingController = TextEditingController();
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController ageController = TextEditingController();
+    String gender = '';
 
     void handleButtonPress(BuildContext context) {
       // Add the user name to the global state
       final globalState = Provider.of<GlobalState>(context, listen: false);
-      globalState.user = _textEditingController.text;
+      globalState.user = {
+        'username': usernameController.text,
+        'age': ageController.text,
+        'gender': gender
+      };
 
       // Navigate to the home page
       Navigator.pushReplacementNamed(context, '/home');
@@ -30,7 +36,7 @@ class InputPage extends StatelessWidget {
             SizedBox(
               width: 300.0,
               child: TextField(
-                controller: _textEditingController,
+                controller: usernameController,
                 textAlign: TextAlign.center,
                 decoration: const InputDecoration(
                   hintText: 'Anna käyttäjänimesi',
@@ -40,21 +46,22 @@ class InputPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40.0),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Ikä: ',
+                const Text('Ikä: ',
                     style: TextStyle(color: Colors.white, fontSize: 20.0)),
-                SizedBox(width: 10.0),
+                const SizedBox(width: 10.0),
                 SizedBox(
                   width: 100.0,
                   child: TextField(
+                    controller: ageController,
                     textAlign: TextAlign.center,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Anna ikäsi',
                       hintStyle: TextStyle(color: Colors.white),
                     ),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ],
@@ -70,7 +77,7 @@ class InputPage extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    print('Male icon pressed');
+                    gender = 'man';
                   },
                   icon: const Icon(
                     Icons.male,
@@ -78,10 +85,10 @@ class InputPage extends StatelessWidget {
                     size: 40,
                   ),
                 ),
-                SizedBox(width: 40.0),
+                const SizedBox(width: 40.0),
                 IconButton(
                   onPressed: () {
-                    print('Female icon pressed');
+                    gender = 'woman';
                   },
                   icon: const Icon(
                     Icons.female,
