@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:medical_questionnaire/InputPage.dart';
-import 'package:medical_questionnaire/SummaryPage.dart';
+import 'package:medical_questionnaire/input_page.dart';
+import 'package:medical_questionnaire/summary_details_page.dart';
+import 'package:medical_questionnaire/summary_page.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:medical_questionnaire/show_questions.dart';
 import 'package:provider/provider.dart';
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
         '/home': (context) =>
             const MyHomePage(title: 'Hyvinvointikyselylomake'),
         '/summary': (context) => const SummaryPage(title: 'Kyselyn yhteenveto'),
+        '/summaryDetails': (context) => const SummaryDetailsPage(
+              summary: {},
+            ),
       },
     );
   }

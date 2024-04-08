@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medical_questionnaire/SummaryDetailsPage.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:provider/provider.dart';
 
@@ -43,13 +42,8 @@ class ShowSummaries extends StatelessWidget {
                   ),
                   onTap: () {
                     // Navigate to summary details page and pass additional fields
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            SummaryDetailsPage(summary: summary),
-                      ),
-                    );
+                    Navigator.pushNamed(context, '/summaryDetails',
+                        arguments: summary);
                   },
                 ),
               ),

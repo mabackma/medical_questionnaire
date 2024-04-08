@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:medical_questionnaire/MyRecorder.dart';
+import 'package:medical_questionnaire/my_recorder.dart';
 import 'package:http/http.dart' as http;
 import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:medical_questionnaire/user_answer_widget.dart';
@@ -10,8 +10,7 @@ class RecordingWidget extends StatefulWidget {
   final String questionId;
   final String question;
   const RecordingWidget(
-      {required this.questionId, required this.question, Key? key})
-      : super(key: key);
+      {required this.questionId, required this.question, super.key});
 
   @override
   _RecordingWidgetState createState() => _RecordingWidgetState();
@@ -56,7 +55,7 @@ class _RecordingWidgetState extends State<RecordingWidget>
   void _sendMessage() async {
     _canRecord = false;
     await myRecorder.stopRecordingAudio();
-    print(myRecorder.mostRecentSpeech);
+
     var uri = Uri.parse('http://127.0.0.1:5001/stt');
 
     // multipart request
