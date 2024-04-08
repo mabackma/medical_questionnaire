@@ -35,7 +35,7 @@ class SummaryDetailsPage extends StatelessWidget {
             const Icon(
               Icons.arrow_circle_down_outlined,
               color: Colors.white,
-              size: 24,
+              size: 40,
             ),
             const SizedBox(height: 10),
             Text(
@@ -49,7 +49,7 @@ class SummaryDetailsPage extends StatelessWidget {
             const Icon(
               Icons.arrow_circle_down_outlined,
               color: Colors.white,
-              size: 24,
+              size: 40,
             ),
             const SizedBox(height: 10),
             Text(
@@ -63,7 +63,7 @@ class SummaryDetailsPage extends StatelessWidget {
             const Icon(
               Icons.arrow_circle_down_outlined,
               color: Colors.white,
-              size: 24,
+              size: 40,
             ),
             const SizedBox(height: 10),
             Text(
