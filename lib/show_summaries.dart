@@ -42,7 +42,6 @@ class ShowSummaries extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    print('Tapped on summary: $summary');
                     // Navigate to summary details page and pass additional fields
                     Navigator.push(
                       context,
