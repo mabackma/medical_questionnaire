@@ -98,6 +98,9 @@ class ApiService {
         List<Map<String, dynamic>> summaries = jsonSummaries.map((json) {
           return {
             "summary": json['summary'],
+            "inputString": json['input_string'],
+            "englishInputString": json['english_input_string'],
+            "englishSummary": json['english_summary'],
           };
         }).toList();
 
