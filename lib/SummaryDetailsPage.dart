@@ -22,7 +22,7 @@ class SummaryDetailsPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               'Input String: $inputString',
@@ -30,6 +30,12 @@ class SummaryDetailsPage extends StatelessWidget {
                 fontSize: 16,
                 color: Colors.white,
               ),
+            ),
+            const SizedBox(height: 10),
+            const Icon(
+              Icons.arrow_circle_down_outlined,
+              color: Colors.white,
+              size: 24,
             ),
             const SizedBox(height: 10),
             Text(
@@ -40,12 +46,24 @@ class SummaryDetailsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
+            const Icon(
+              Icons.arrow_circle_down_outlined,
+              color: Colors.white,
+              size: 24,
+            ),
+            const SizedBox(height: 10),
             Text(
               'John Snow Medical Summary: $englishSummary',
               style: const TextStyle(
                 fontSize: 16,
                 color: Colors.white,
               ),
+            ),
+            const SizedBox(height: 10),
+            const Icon(
+              Icons.arrow_circle_down_outlined,
+              color: Colors.white,
+              size: 24,
             ),
             const SizedBox(height: 10),
             Text(
