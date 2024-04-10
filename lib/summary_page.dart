@@ -25,6 +25,10 @@ class _SummaryPageState extends State<SummaryPage> {
     await context.read<GlobalState>().getSummaries();
   }
 
+  void moveToConclusion() {
+    Navigator.pushNamed(context, '/summary_conclusion');
+  }
+
   void exitApplication() {
     exit(0);
   }
@@ -47,6 +51,13 @@ class _SummaryPageState extends State<SummaryPage> {
             child: ShowSummaries(),
           ),
           const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: ElevatedButton(
+              onPressed: moveToConclusion,
+              child: const Text('Näytä yhteenveto kaikista tiivistelmistä'),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: ElevatedButton(

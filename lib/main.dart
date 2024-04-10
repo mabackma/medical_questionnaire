@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical_questionnaire/input_page.dart';
+import 'package:medical_questionnaire/summary_conclusion.dart';
 import 'package:medical_questionnaire/summary_details_page.dart';
 import 'package:medical_questionnaire/summary_page.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
@@ -37,9 +38,13 @@ class MyApp extends StatelessWidget {
         '/': (context) => const InputPage(),
         '/home': (context) =>
             const MyHomePage(title: 'Hyvinvointikyselylomake'),
-        '/summary': (context) => const SummaryPage(title: 'Kyselyn yhteenveto'),
+        '/summary': (context) =>
+            const SummaryPage(title: 'Tiivistelmä vastauksista'),
         '/summaryDetails': (context) => const SummaryDetailsPage(
               summary: {},
+            ),
+        '/summary_conclusion': (context) => const SummaryConclusion(
+              title: 'Yhteenveto kaikista tiivistelmistä',
             ),
       },
     );

@@ -115,4 +115,30 @@ class ApiService {
       throw Exception('Error fetching summaries: $error');
     }
   }
+
+  // Fetch the summary of the summaries from the server.
+  static Future<String> getSummaryFromSummaries(user) async {
+    try {
+      final response = await http.post(
+        Uri.parse('http://localhost:5001/get_summary_from_summaries'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({'user': user}),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+
+        String summaryFromHistory = jsonResponse['summary_from_history'];
+
+        print('Summary of summaries fetched successfully');
+        return summaryFromHistory;
+      } else {
+        throw Exception('Failed to load summaries: ${response.statusCode}');
+      }
+    } catch (error) {
+      throw Exception('Error fetching summaries: $error');
+    }
+  }
 }

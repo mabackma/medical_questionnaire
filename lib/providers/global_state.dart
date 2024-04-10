@@ -10,6 +10,7 @@ class GlobalState extends ChangeNotifier {
   List<Map<String, dynamic>> answers = [];
   List<Map<String, dynamic>> summaries = [];
   String answerDate = '';
+  String summaryConclusion = '';
 
   // Method to fetch the entire questionnaire from the server
   Future<void> getQuestionnaire() async {
@@ -47,6 +48,16 @@ class GlobalState extends ChangeNotifier {
       notifyListeners();
     } catch (error) {
       print('Error fetching summaries: $error');
+    }
+  }
+
+  Future<void> getSummaryFromSummaries() async {
+    try {
+      summaryConclusion = await ApiService.getSummaryFromSummaries(user);
+      // Notify listeners to trigger UI update
+      notifyListeners();
+    } catch (error) {
+      print('Error fetching summary from history: $error');
     }
   }
 
