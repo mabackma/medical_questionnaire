@@ -12,13 +12,12 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   DateTime? selectedDate = DateTime.now();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  String gender = '';
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController usernameController = TextEditingController();
-    TextEditingController ageController = TextEditingController();
-    String gender = '';
-
     void handleButtonPress(BuildContext context) {
       // Add the user name to the global state
       final globalState = Provider.of<GlobalState>(context, listen: false);
