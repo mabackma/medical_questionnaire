@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:medical_questionnaire/providers/global_state.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
-class InputPage extends StatelessWidget {
-  const InputPage({Key? key});
+class InputPage extends StatefulWidget {
+  const InputPage({super.key});
+
+  @override
+  _InputPageState createState() => _InputPageState();
+}
+
+class _InputPageState extends State<InputPage> {
+  DateTime? selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +28,24 @@ class InputPage extends StatelessWidget {
         'gender': gender
       };
 
+      globalState.answerDate = DateFormat.yMMMd().format(selectedDate!);
+
       // Navigate to the home page
       Navigator.pushReplacementNamed(context, '/home');
+    }
+
+    Future<void> selectDate(BuildContext context) async {
+      final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101),
+      );
+      if (picked != null && picked != selectedDate) {
+        setState(() {
+          selectedDate = picked;
+        });
+      }
     }
 
     return Scaffold(
@@ -94,6 +118,26 @@ class InputPage extends StatelessWidget {
                     Icons.female,
                     color: Colors.pinkAccent,
                     size: 40,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 30.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ElevatedButton(
+                  onPressed: () => selectDate(context),
+                  child: const Text('Select Date'),
+                ),
+                const SizedBox(width: 40),
+                Text(
+                  selectedDate != null
+                      ? DateFormat.yMMMd().format(selectedDate!)
+                      : 'No date selected',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16, // Adjust the font size as needed
                   ),
                 ),
               ],

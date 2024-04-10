@@ -27,24 +27,36 @@ class ShowSummaries extends StatelessWidget {
           itemBuilder: (context, index) {
             final summary = summaries[index];
             final summaryText = summary['summary'] as String;
+            final summaryDate =
+                "summary date"; //summary['answer_date'] as String;
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Card(
                 elevation: 3,
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 child: InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      summaryText,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ),
                   onTap: () {
                     // Navigate to summary details page and pass additional fields
                     Navigator.pushNamed(context, '/summaryDetails',
                         arguments: summary);
                   },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          summaryDate,
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                        const SizedBox(height: 10), // Add spacing
+                        Text(
+                          summaryText,
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             );

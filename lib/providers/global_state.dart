@@ -9,6 +9,7 @@ class GlobalState extends ChangeNotifier {
   List<Map<String, dynamic>> questionnaire = [];
   List<Map<String, dynamic>> answers = [];
   List<Map<String, dynamic>> summaries = [];
+  String? answerDate;
 
   // Method to fetch the entire questionnaire from the server
   Future<void> getQuestionnaire() async {
