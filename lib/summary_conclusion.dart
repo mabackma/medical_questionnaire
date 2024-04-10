@@ -27,7 +27,7 @@ class _SummaryConclusionState extends State<SummaryConclusion> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Yhteenveto kaikista tiiivistelmistä"),
+        title: Text(widget.title),
       ),
       body: Column(
         children: [
@@ -36,9 +36,13 @@ class _SummaryConclusionState extends State<SummaryConclusion> {
               // Get the summary conclusion from the global state
               String summaryConclusion = globalState.summaryConclusion;
 
-              return Expanded(
-                child: Text(
-                  summaryConclusion,
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    summaryConclusion,
+                    style: const TextStyle(fontSize: 16.0),
+                  ),
                 ),
               );
             },
