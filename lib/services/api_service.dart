@@ -69,7 +69,8 @@ class ApiService {
       );
 
       if (response.statusCode != 201) {
-        throw Exception('Failed to send answers: ${response.statusCode}');
+        throw Exception(
+            'Failed to send answers for summary: ${response.statusCode}');
       } else {
         print('Answers for summary sent successfully');
       }
@@ -98,6 +99,7 @@ class ApiService {
         List<Map<String, dynamic>> summaries = jsonSummaries.map((json) {
           return {
             "summary": json['summary'],
+            "answerDate": json['answer_date'],
             "inputString": json['input_string'],
             "englishInputString": json['english_input_string'],
             "englishSummary": json['english_summary'],

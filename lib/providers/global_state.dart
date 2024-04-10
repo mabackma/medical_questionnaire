@@ -9,7 +9,7 @@ class GlobalState extends ChangeNotifier {
   List<Map<String, dynamic>> questionnaire = [];
   List<Map<String, dynamic>> answers = [];
   List<Map<String, dynamic>> summaries = [];
-  String? answerDate;
+  String answerDate = '';
 
   // Method to fetch the entire questionnaire from the server
   Future<void> getQuestionnaire() async {
@@ -28,10 +28,10 @@ class GlobalState extends ChangeNotifier {
     print('Sending answers to server from user: $user');
     try {
       await ApiService.postAnswers(
-        {'user': user, 'answers': answers},
+        {'user': user, 'answerDate': answerDate, 'answers': answers},
       );
       await ApiService.postAnswersForSummary(
-        {'user': user, 'answers': answers},
+        {'user': user, 'answerDate': answerDate, 'answers': answers},
       );
       await deleteFilesInDirectory();
     } catch (error) {

@@ -27,8 +27,7 @@ class ShowSummaries extends StatelessWidget {
           itemBuilder: (context, index) {
             final summary = summaries[index];
             final summaryText = summary['summary'] as String;
-            final summaryDate =
-                "summary date"; //summary['answer_date'] as String;
+            final summaryDate = summary['answerDate'] as String;
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Card(
