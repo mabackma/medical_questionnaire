@@ -21,11 +21,15 @@ class _SummaryPageState extends State<SummaryPage> {
   }
 
   void handleAnswers() async {
-    await context.read<GlobalState>().sendAnswersToServer(context);
-    await context.read<GlobalState>().getSummaries();
+    if (context.read<GlobalState>().answers.isNotEmpty) {
+      await context.read<GlobalState>().sendAnswersToServer(context);
+      await context.read<GlobalState>().getSummaries();
+    }
   }
 
   void moveToConclusion() {
+    context.read<GlobalState>().summaryConclusion = '';
+    context.read<GlobalState>().answers.clear();
     Navigator.pushNamed(context, '/summary_conclusion');
   }
 
