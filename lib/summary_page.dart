@@ -55,6 +55,7 @@ class _SummaryPageState extends State<SummaryPage> {
             child: ShowSummaries(),
           ),
           const SizedBox(height: 20),
+          /*
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: ElevatedButton(
@@ -62,6 +63,7 @@ class _SummaryPageState extends State<SummaryPage> {
               child: const Text('Näytä yhteenveto kaikista tiivistelmistä'),
             ),
           ),
+          */
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: ElevatedButton(
