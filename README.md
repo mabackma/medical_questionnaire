@@ -7,5 +7,6 @@ The back end returns an AI generated summary from all the multiple choice answer
 This summary is displayed on the app.
 
 [Medical summary back end](https://github.com/mabackma/medical_questionnaire_backend)
+
 [Video](https://www.youtube.com/watch?v=LpVu0fCTQkw)
 
