@@ -1,16 +1,11 @@
 # medical_questionnaire
 
-A new Flutter project.
+A Desktop application made with flutter for asking medical questions from an elderly person.
+The questions are answered with either multiple choice answers or spoken language. 
+The app records the spoken answers to a file and sends them to a Python Flask back end along with the multiple choice answers.
+The back end returns an AI generated summary from all the multiple choice answers and spoken answers. 
+This summary is displayed on the app.
 
-## Getting Started
+[Medical summary back end](https://github.com/mabackma/medical_questionnaire_backend)
+[Video](https://www.youtube.com/watch?v=LpVu0fCTQkw)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
