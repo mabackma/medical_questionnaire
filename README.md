@@ -8,7 +8,7 @@ The app records the spoken answers to a file and sends them to a Python Flask ba
 
 The back end returns an AI generated summary from all the multiple choice answers and spoken answers. 
 
-This summary is displayed on the app.
+The AI generated summary is displayed on the app.
 
 [Medical summary back end](https://github.com/mabackma/medical_questionnaire_backend)
 
