@@ -1,4 +1,4 @@
-# Medical questionnaire Flutter app
+# Medical questionnaire Flutter app (prototype)
 
 A Desktop application made with Flutter for asking medical questions from an elderly person.
 
